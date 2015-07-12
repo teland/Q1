@@ -41,9 +41,14 @@ sequelize.sync().then(function(){
 	//success ejecuta manejador cuando la tabla se ha creado. Es antiguo ahora se usa promises
 	Quiz.count().then(function (count){
 		if(count===0) {	//la tabla se inicializa solo si está vacía
-			Quiz.create({pregunta: 'Capital de Italia',
-				respuesta: 'Roma'})
-				.then(function(){console.log('Base de datos iniciada')});
+ Quiz.bulkCreate([{pregunta: 'Capital de Italia',
+				respuesta: 'Roma'},
+             {pregunta: 'Bella como la Victoria de Samotra',
+                                respuesta: 'cia'},
+              {pregunta: 'Archi',
+                                respuesta: 'dona'}])
+
+		.then(function(){console.log('Base de datos iniciada')});
 		};
 	});
 });
